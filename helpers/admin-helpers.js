@@ -18,7 +18,7 @@ module.exports={
     },
     showcategory:()=>{
         return new Promise(async(resolve,reject)=>{
-            let main_category=await db.get().collection(collection.PRODUCT_CATEGORY).find({"isDeleted" : false}).toArray()
+            let main_category=await db.get().collection(collection.PRODUCT_CATEGORY).find({"isDeleted":false}).toArray()
             console.log(main_category);
             resolve(main_category )
         })
@@ -32,18 +32,26 @@ module.exports={
            
         })
 },
-updatecategory:(userId,userDetails)=>{
-    return new Promise((resolve,reject)=>{
-        db.get().collection(collection.PRODUCT_CATEGORY).updateOne({_id:objectId(userId)},{
-            $set :{
-                "name" : categoryData.name,
-                
-            }
-        }).then((response)=>{
-            resolve()
-        })
+editCategory:(categoryId,categoryname)=>{
+    return new Promise(async(resolve,reject)=>{
+        let name = categoryname.name
+       await db.get().collection(collection.PRODUCT_CATEGORY).updateOne({_id:objectId(categoryId)},{
+            $set :{"name" : name }}).then((response)=>{
+                resolve(response)})
     })
 }
+// updateUser:(userId,userDetails)=>{
+//     return new Promise((resolve,reject)=>{
+//         db.get().collection(collection.USER_COLLECTION).updateOne({_id:objectId(userId)},{
+//             $set :{
+//                 name : userDetails.name,
+//                 email : userDetails.email
+//             }
+//         }).then((response)=>{
+//             resolve()
+//         })
+//     })
+// }
     
     
 }

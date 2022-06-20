@@ -14,21 +14,34 @@ router.get('/', function(req, res, next) {
 });
 
 
-router.get('/dashboard',(req,res)=>{
-  var abc = (adminHelpers.showcategory(),vendorHelpers.getallvendors())
-  abc .then((data)=>{
-    console.log(data);
-    res.render('admin/admin-dashboard',{data:data})
-  })
-  
-})
-
 // router.get('/dashboard',(req,res)=>{
+//   // var abc = (adminHelpers.showcategory(),vendorHelpers.getallvendors())
 //   adminHelpers.showcategory().then((data)=>{
+//     console.log(data);
 //     res.render('admin/admin-dashboard',{data:data})
 //   })
   
 // })
+
+router.get('/dashboard',(req,res)=>{
+  adminHelpers.showcategory().then((data)=>{
+    vendorHelpers.getallvendors().then((vendors)=>{
+      console.log(vendors);
+      res.render('admin/admin-dashboard',{data:data,vendors:vendors})
+    })
+    
+  })
+  
+})
+
+router.post('/edit-category/:id',(req,res)=>{
+  console.log(req.body)
+  adminHelpers.editCategory(req.params.id,req.body)
+    
+    res.redirect('/admin/dashboard')
+  
+
+})
 
 
 
@@ -61,6 +74,15 @@ router.get('/delete-user/:id',(req,res)=>{
   })
 
  
+})
+
+
+
+router.get('/admit-vendor/:id',(req,res)=>{
+  let vendorId = req.params.id
+  vendorHelpers.admitVendor(vendorId).then((response)=>{
+    res.redirect('/admin/dashboard')
+  })
 })
 
 // router.get('/edit-user/:id',async(req,res)=>{

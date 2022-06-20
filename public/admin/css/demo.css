@@ -116,3 +116,7 @@ border: none;
   font-weight: 800;
   
 }
+
+.dash-container{
+  box-shadow: 2px 2px 12px grey;
+}
