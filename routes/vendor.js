@@ -38,9 +38,10 @@ router.post('/vendor-dash',(req,res)=>{
 
 
 
-
+var exist =  false
 router.get('/vendor-signup',(req,res)=>{
-    res.render('vendor/vendor-signup')
+res.render('vendor/vendor-signup',{exist:exist})
+    exist = false
 })
 
 router.get('/vendor-verification',(req,res)=>{
@@ -52,10 +53,17 @@ router.post('/vendor-verification',(req,res)=>{
 })
 
 router.post('/vendor-signup',(req,res)=>{
-venderHelper.doSignup(req.body)
+venderHelper.doSignup(req.body).then((vendorExist)=>{
+if(vendorExist){
+  exist = true
+ res.redirect('/vendor/vendor-signup')
+ 
+}else{
+  res.redirect('/vendor')
+}
+})
 console.log(req.body);
-
-    res.redirect('/vendor')
+   
 })
 
 router.get('/admit-vendor/:id',(req,res)=>{

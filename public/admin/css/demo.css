@@ -117,6 +117,11 @@ border: none;
   
 }
 
-.dash-container{
+.dash-container {
   box-shadow: 2px 2px 12px grey;
+}
+
+.add-category-container{
+  box-shadow: 2px 2px 12px grey;
+  border-radius: 8px;
 }

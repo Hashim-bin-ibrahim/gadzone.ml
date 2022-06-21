@@ -10,16 +10,27 @@ module.exports ={
     doSignup :(vendorData)=>{
         return new Promise(async(resolve,reject)=>
         {
-            
-             vendorData.password = await bcrypt.hash(vendorData.password,10)
-            db.get().collection(collection.VENDOR_COLLECTION ).insertOne({'name':vendorData.name,'email':vendorData.email,'password':vendorData.password,"canLogin":"false"}).then((data)=>{
-              
-                resolve(data.insertedId)
-               
+            const exist =await db.get().collection(collection.VENDOR_COLLECTION ).findOne({email:vendorData.email})
+            if(exist){
+                var vendorExist =true
+        
+                
+                resolve(vendorExist)
+            }else{
+                vendorData.password = await bcrypt.hash(vendorData.password,10)
+                db.get().collection(collection.VENDOR_COLLECTION ).insertOne({'name':vendorData.name,'email':vendorData.email,'password':vendorData.password,"canLogin":"false"}).then((data)=>{
+                    var vendorExist =false
+                    resolve(vendorExist)
+
             })
             
+        }
+            
+               
+                        
           
-          })
+          
+        })
       
 
     },
@@ -36,7 +47,7 @@ module.exports ={
                 resolve(response)
             })
            
-        })
+        }) 
 },
 vendorLogin : (userData)=>{
     return new Promise(async(resolve,reject)=>{
@@ -72,7 +83,7 @@ vendorLogin : (userData)=>{
 addProduct : (product,callback)=>{
     console.log(product);
  
-    db.get().collection('product').insertOne(product).then((data)=>{
+    db.get().collection(collection.PRODUCT_COLLECTION).insertOne(product).then((data)=>{
        console.log(data);
         callback(data.insertedId)
     })

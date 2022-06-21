@@ -256,9 +256,9 @@
                       <div class="dropdown-divider"></div>
                     </li>
                     <li>
-                      <a class="dropdown-item" href="/admin/">
+                      <a class="dropdown-item" href="/admin/logout">
                         <i class="bx bx-power-off me-2"></i>
-                        <span class="align-middle">Log Out</span>
+                        <span  class="align-middle">Log Out</span>
                       </a>
                     </li>
                   </ul>
@@ -271,7 +271,7 @@
           <!-- / Navbar -->
 
           <!-- Content wrapper -->
-          <div class="container bg-light p-3 mt-5 mb-5">
+          <div class="add-category-container bg-light p-3 mt-5 mb-5">
             <div class="row">
               <div class="col-md-12  ">
                 <form action="/admin/add-category" method="post">
@@ -387,7 +387,7 @@
       <td> <input class="category-view-input" type="text" id="{{this._id}}" value="{{this.email}}" disabled></td>
       <td> 9532648521</td>
       
-      <td><a href="/admin/edit-user/{{this._id}}" class="btn btn-primary">BLOCK</a>
+      <td>
         <a href="/admin/admit-vendor/{{this._id}}" class="btn btn-danger" onclick="return confirm('are you want to Admit {{this.name}}')">ADMIT</a></td>
       
       
