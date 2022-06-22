@@ -49,16 +49,16 @@ module.exports ={
            
         }) 
 },
-vendorLogin : (userData)=>{
+vendorLogin : (vendorData)=>{
     return new Promise(async(resolve,reject)=>{
         let loginStatus = false
         let response = {}
         
-        let user = await db.get().collection(collection.VENDOR_COLLECTION).findOne({email:userData.email,"canLogin":true})
-        if(user){
-            bcrypt.compare(userData.password,user.password).then((status)=>{
+        let user = await db.get().collection(collection.VENDOR_COLLECTION).findOne({email:vendorData.email,"canLogin":true})
+        if(user){vendorData
+            bcrypt.compare(vendorData.password,user.password).then((status)=>{
 
-                console.log(userData.password);
+                console.log(vendorData.password);
                 console.log(user.password);
                 if (status){
                     console.log('login success');

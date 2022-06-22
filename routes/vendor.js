@@ -1,9 +1,13 @@
 var express = require('express');
 var router = express.Router();
-var venderHelper = require('../helpers/vendor-helper')
+var vendorHelper = require('../helpers/vendor-helper')
+var sms = require('../config/verify');
+const { mkdirSync } = require('fs');
+const { deserialize } = require('v8');
 
 
 router.get('/',(req,res)=>{
+  
     res.render('vendor/vendor-login')
 })
 
@@ -17,7 +21,7 @@ router.get('/vendor-dash',(req,res)=>{
 
 router.post('/vendor-dash',(req,res)=>{ 
   
-    venderHelper.vendorLogin(req.body).then((response)=>{
+    vendorHelper.vendorLogin(req.body).then((response)=>{
       
       if( response.status){
         res.redirect('/vendor/vendor-dash')
@@ -32,12 +36,6 @@ router.post('/vendor-dash',(req,res)=>{
   })
 
 
-
-
-
-
-
-
 var exist =  false
 router.get('/vendor-signup',(req,res)=>{
 res.render('vendor/vendor-signup',{exist:exist})
@@ -48,23 +46,52 @@ router.get('/vendor-verification',(req,res)=>{
     res.render('vendor/vendor-verification')
 })
 
-router.post('/vendor-verification',(req,res)=>{
-    res.render('vendor/vendor-verification')
+router.post('/otpVerify',(req,res)=>{
+sms.otpVerify(req.body,req.session.vendorData).then((data)=>{
+if(data.valid){
+vendorHelper.doSignup(req.session.vendorData).then((response)=>{
+console.log(response);
+res.redirect('/vendor')
+})
+}else{
+  res.redirect('/vendor/vendor-verification')
+}
+})
+   
 })
 
 router.post('/vendor-signup',(req,res)=>{
-venderHelper.doSignup(req.body).then((vendorExist)=>{
-if(vendorExist){
-  exist = true
- res.redirect('/vendor/vendor-signup')
- 
+  req.session.vendorData = req.body
+sms.doSms(req.body).then((data)=>{
+if(data){
+  res.redirect('/vendor/vendor-verification')
 }else{
-  res.redirect('/vendor')
+  res.redirect('/vendor/vendor-signup')
 }
 })
-console.log(req.body);
-   
+
+ 
+  
 })
+
+
+
+// router.post('/vendor-signup',(req,res)=>{
+//   req.session.vendorData = req.body
+// vendorHelper.doSignup(req.body).then((vendorExist)=>{
+// if(vendorExist){
+//   exist = true
+//  res.redirect('/vendor/vendor-signup')
+//  console.log('signup successfull');
+ 
+// }else{
+//   res.redirect('/vendor/vendor-verification')
+//   console.log('signup failed');
+// }
+// })
+// console.log(req.body);
+   
+// })
 
 router.get('/admit-vendor/:id',(req,res)=>{
     let userId = req.params.id
@@ -82,7 +109,7 @@ router.get('/admit-vendor/:id',(req,res)=>{
      console.log(req.body)
      console.log(req.files.image)
   
-     venderHelper.addProduct(req.body,(id)=>{
+     vendorHelper.addProduct(req.body,(id)=>{
        let image=req.files.image 
        
        image.mv('./public/product-images/'+id+'.jpg',(err,done)=>{

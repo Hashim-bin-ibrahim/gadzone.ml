@@ -294,37 +294,40 @@
           
           <section>
     <div class="container mt-5">
-        <form action="/vendor/add-products" method="POST" enctype="multipart/form-data">
+        <form action="/vendor/add-products" method="POST" enctype="multipart/form-data" id="vendor_dash"> 
   <div class="form-group">
     <label >Product Name</label>
-    <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Product Name" name="name">
+    <input type="text" class="form-control" required id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Product Name" name="name">
     
   </div>
  
   <div class="form-group">
     <label for="exampleInputPassword1">Price</label>
-    <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Enter Price " name="price">
+    <input type="text" class="form-control" required id="exampleInputPassword1" placeholder="Enter Price " name="price">
   </div>
   <div class="form-group">
     <label for="exampleFormControlFile1">Image</label>
-    <input type="file" class="form-control-file" id="exampleFormControlFile1" name="image">
+    <input type="file" class="form-control-file"  required id="exampleFormControlFile1" name="image">
   </div> 
    <div class="form-group">
     <label for="exampleInputPassword1">Quantity</label>
-    <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Quantity" name="quantity">
+    <input type="text" class="form-control" required id="exampleInputPassword1" placeholder="Quantity" name="quantity">
   </div>
    <div class="form-group">
     <label for="exampleInputPassword1">Category</label>
-    <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Choose Category" name="category">
+    <input type="text" class="form-control" required id="exampleInputPassword1" placeholder="Choose Category" name="category">
   </div>
    <div class="form-group">
     <label for="exampleInputPassword1">description</label>
-    <input type="text" class="form-control" id="exampleInputPassword1" placeholder="Add Description" name="description">
+    <input type="text" class="form-control" required id="exampleInputPassword1" placeholder="Add Description" name="description">
   </div>
 
 
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
+ <script>
+  $("#vendor_dash").validate();
+</script>
     </div>
 </section> 
 

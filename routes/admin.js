@@ -2,6 +2,7 @@ var express = require('express');
 const req = require('express/lib/request');
 const adminHelpers = require('../helpers/admin-helpers');
 const vendorHelpers = require('../helpers/vendor-helper')
+const sms = require('../config/verify')
 var router = express.Router();
 
 /* GET users listing. */
@@ -28,6 +29,9 @@ loginErr=false;
 //   })
   
 // })
+router.get('/admin-verify',(req,res)=>{
+  res.render('admin/admin-verification')
+})
 
 router.get('/dashboard',(req,res)=>{
   if(req.session.adminloggedIn){
@@ -53,6 +57,19 @@ router.post('/edit-category/:id',(req,res)=>{
   
 
 })
+router.post('/otpVerify',(req,res)=>{
+  sms.otpAdminVerify(req.body).then((data)=>{
+  if(data.valid){
+  // amdinHelper.doSignup(req.session.vendorDat).then((response)=>{
+  // console.log(response);
+  res.redirect('/admin/dashboard')
+  
+  }else{
+    res.redirect('/vendor/vendor-verification')
+  }
+  })
+     
+  })
 
 
 
@@ -61,7 +78,8 @@ router.post('/dashboard', function(req, res) {
   const { email,password } = req.body;
   if (email == emaildb && password == passworddb) {
      req.session.adminloggedIn=true
-    res.redirect('/admin/dashboard');
+sms.adminLogin(req.body)
+    res.redirect('/admin/admin-verify');
     console.log('login successfull');
        
   }else{
