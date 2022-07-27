@@ -1,0 +1,51 @@
+ {{!-- SHOW ALL CATEGORY  LIST STARTS--}}
+        <div class="dash-container mt-5 p-4">
+          <h4 class="text-center mb-5">Active Categories</h4>
+<section >
+
+   <div class="container shadow p-2">
+      
+        <table class="table " id="activeCat_table" >
+  <thead>
+    <tr>
+      
+      <th scope="col">index</th>
+      <th scope="col">category</th>
+      
+       <th scope="col">Block</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+      {{#each data}}
+    <tr>
+     
+      <td>{{inc @index}}</td>
+      <td> {{this.name}}</td>
+      
+      
+          <td>
+        <a href="/admin/block-cat/{{this._id}}" class="btn btn-danger" onclick="return confirm('are you sur to block  {{this.name}}')">Block</a></td>
+    </tr>
+    
+    {{/each}}
+   
+  </tbody>
+</table>
+   </div>
+</section>
+<script>
+  $(document).ready(function () {
+
+
+    $('#user_table').wrap('<div id="hide" style="display:none"/>');
+
+    $('#hide').css('display', 'block');
+  });
+
+
+  var table = $('#activeCat_table').DataTable();
+</script>
+        </div>
+        
+ {{!-- SHOW ALL CATEGORY  LIST ends--}}

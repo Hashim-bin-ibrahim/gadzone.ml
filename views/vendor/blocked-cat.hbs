@@ -1,0 +1,54 @@
+{{!-- SHOW ALL CATEGORY LIST STARTS--}}
+<div class="dash-container  mt-5 p-4">
+  <h4 class="text-center mb-5">Blocked Categories</h4>
+  <section>
+
+    <div class="container shadow p-2">
+
+      <table class="table display" id="category_table">
+        <thead>
+          <tr>
+
+            <th scope="col">index</th>
+            <th scope="col">category</th>
+            {{!-- <th scope="col">options</th> --}}
+
+          </tr>
+        </thead>
+        <tbody>
+          {{#each data}}
+          <tr>
+
+            <td>{{inc @index}}</td>
+            <td> {{this.name}}</td>
+            <td>
+              <a href="/vendor/unblocked-cat/{{this._id}}" class="btn btn-danger"
+                onclick="return confirm('are you  to  {{this.name}}')">UnBlock</a>
+            </td>
+
+          </tr>
+
+
+          {{/each}}
+
+        </tbody>
+      </table>
+    </div>
+  </section>
+</div>
+<script>
+  $(document).ready(function () {
+
+
+    $('#user_table').wrap('<div id="hide" style="display:none"/>');
+
+    $('#hide').css('display', 'block');
+  });
+
+
+  var table = $('#category_table').DataTable();
+</script>
+
+
+
+{{!-- SHOW ALL CATEGORY LIST ends--}}

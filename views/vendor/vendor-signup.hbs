@@ -5,14 +5,14 @@
                 <div class="container h-100">
                     <div class="row d-flex justify-content-center align-items-center h-100">
                         <div class="col-12 col-md-9 col-lg-7 col-xl-6">
-                            <div class="dash-container" style="border-radius: 15px;">
+                            <div class="dash-container border border-danger" style="border-radius: 15px;">
                                 <div class="card-body p-5">
                                     <h2 class="text-uppercase text-center mb-5" >Vendor Signup</h2>
 
                                     <form action="/vendor/vendor-signup" method="POST" id="vendor_login">
 
-                                        <div class="form-outline mb-4">
-                                            <label class="form-label" for="form3Example1cg">Your Name</label>
+                                     <div class="form-outline mb-4">
+                                            <label class="form-label" for="form3Example3cg" >Name</label>
                                             <input type="text" minlength="4" required name="name"
                                                 class="form-control form-control-lg" />
                                             
@@ -24,20 +24,20 @@
                                                 class="form-control form-control-lg" />
                                             
                                         </div>
-                                        {{#if exist}}
+                                        {{#if signupErr}}
                                         <div class="emailexist">
                                             <h6 class="text-danger">An account with this Email already Exist</h6>
                                         </div>
                                         {{/if}}
-                                         <div class="form-outline mb-4">
-                                              <label class="form-label" for="form3Example4cg">Phone Number</label>
-                                            <input type="text" minlength="4" required name="phonenumber"
+                                        <div class="form-outline mb-4">
+                                            <label class="form-label" for="form3Example3cg" >Password</label>
+                                            <input type="password" minlength="4" required name="password"
                                                 class="form-control form-control-lg" />
-                                          
+                                            
                                         </div>
                                         <div class="form-outline mb-4">
-                                              <label class="form-label" for="form3Example4cg">Password</label>
-                                            <input type="password" minlength="4" required name="password"
+                                              <label class="form-label" for="form3Example4cg">Number</label>
+                                            <input type="tel" minlength="10" maxlength="10" required name="phonenumber"
                                                 class="form-control form-control-lg" />
                                           
                                         </div>
@@ -58,8 +58,8 @@
 
                                     </form>
                                      <script>
-  $("#vendor_login").validate();
-</script>
+                                         $("#vendor_login").validate();
+                                    </script>
 
                                 </div>
                             </div>

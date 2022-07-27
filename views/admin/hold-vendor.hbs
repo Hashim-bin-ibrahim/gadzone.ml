@@ -1,0 +1,57 @@
+{{!-- SHOW ALL CATEGORY  LIST STARTS--}}
+        <div class="dash-container  mt-5 p-4">
+                <h4 class="text-center mb-5">New Category Request</h4>
+
+<section >
+
+   <div class="container  shadow p-2">
+      
+        <table class="table display" id="reqCat_table" >
+  <thead>
+    <tr>
+      
+      <th scope="col">index</th>
+      <th scope="col">name</th>
+      <th scope="col">email</th>
+      <th scope="col">number</th>
+      
+      <th scope="col">Admit</th>
+
+      
+    </tr>
+  </thead>
+  <tbody>
+      {{#each vendors}}
+    <tr>
+     
+      <td>{{inc @index}}</td>
+      <td> {{this.name}}</td>
+      <td>{{this.email}}</td>
+      <td>{{this.phoneNumber}}</td>
+  
+      <td>
+        <a href="/admin/admit-holded-ven/{{this._id}}" class="btn btn-danger" onclick="return confirm('are you sure to unblock {{this.name}}')">Admit</a></td>
+
+      
+
+
+    {{/each}}
+   
+  </tbody>
+</table>
+   </div>
+</section>
+<script>
+  $(document).ready(function () {
+
+
+    $('#user_table').wrap('<div id="hide" style="display:none"/>');
+
+    $('#hide').css('display', 'block');
+  });
+
+
+  var table = $('#reqCat_table').DataTable();
+</script>
+        </div>
+ {{!-- SHOW ALL CATEGORY  LIST ends--}}

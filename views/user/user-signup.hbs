@@ -1,0 +1,93 @@
+
+        <section class="vh-100 bg-image pt-5 pb-5"
+            style="background-color:white;">
+            <div class="mask d-flex align-items-center h-100 gradient-custom-3">
+                <div class="container h-100">
+                    <div class="row d-flex justify-content-center align-items-center h-100">
+                        <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+                            <div class="dash-container" style="border-radius: 15px;">
+                                <div class="card-body p-5">
+                                    <h2 class="text-uppercase text-center mb-5" >User Signup</h2>
+
+                                    <form action="/user-signup" method="POST" id="vendor_login">
+
+                                     <div class="form-outline mb-4">
+                                            <label class="form-label" for="form3Example3cg" >Name</label>
+                                            <input type="text" minlength="4" required name="namee"
+                                                class="form-control form-control-lg" />
+                                            
+                                        </div>
+
+                                        <div class="form-outline mb-4">
+                                            <label class="form-label" for="form3Example3cg" >Your Email</label>
+                                            <input type="email" minlength="4" required name="email"
+                                                class="form-control form-control-lg" />
+                                            
+                                        </div>
+                                        {{!-- {{#if exist}}
+                                        <div class="emailexist">
+                                            <h6 class="text-danger">An account with this Email already Exist</h6>
+                                        </div>
+                                        {{/if}} --}}
+                                        <div class="form-outline mb-4">
+                                            <label class="form-label" for="form3Example3cg" >Password</label>
+                                            <input type="password" minlength="4" required name="password"
+                                                class="form-control form-control-lg" />
+                                            
+                                        </div>
+                                        <div class="form-outline mb-4">
+                                              <label class="form-label" for="form3Example4cg">Conform Password</label>
+                                            <input type="password" minlength="4" required name="password2"
+                                                class="form-control form-control-lg" />
+                                          
+                                        </div>
+
+                                        {{!-- <div class="form-outline mb-4">
+                                            <input type="number" name="number"
+                                                class="form-control form-control-lg" />
+                                            <label class="form-label" for="form3Example4cg">Phone Number</label>
+                                        </div> --}}
+
+                                        
+
+
+
+                                        <div class="d-flex justify-content-center">
+                                            <button class="btn btn-success" type="submit" >Register</button>
+                                        </div>
+
+                                    </form>
+                                     <script>
+                                         $("#vendor_login").validate();
+                                    </script>
+                                    {{!-- //sweet alert starts --}}
+                                    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+    <script src="sweetalert2/dist/sweetalert2.all.min.js"></script>
+    <!-- Include a polyfill for ES6 Promises (optional) for IE11 -->
+    <script src="https://cdn.jsdelivr.net/npm/promise-polyfill@8/dist/polyfill.js"></script>
+        
+
+{{#if userExists}}
+
+<script>
+  flash()
+  function flash(){
+ Swal.fire({
+  icon: 'error',
+  title: 'Oops...',
+  text: 'This user already Exists..',
+})
+  }
+ 
+</script>
+  
+{{/if}}
+                                     {{!-- //sweet alert ends --}}
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>

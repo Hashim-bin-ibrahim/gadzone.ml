@@ -1,0 +1,242 @@
+<!-- Category -->
+<div class="viewProducts">
+    <a href="/vendor/view-poducts" type="button" class="btn btn-primary">view Products</a>
+</div>
+<div class="orders mt-5 p-5">
+    <div class="row">
+        <div class="col-xl-11 mx-auto category-top">
+            <div class="card">
+                <div class="full_container">
+                    <div class="inner_container">
+                        <!-- dashboard inner -->
+                        <h2 class="text-center mt-5 pt-5">Add Products</h2>
+                        <div class="w-75 mx-auto mt-5">
+                            <form class="p-5 border mb-5" action="/vendor/add-product" method="post"
+                                enctype="multipart/form-data">
+                                <div class="form-group">
+                                    <label for="inputProduct4">Product Name</label>
+                                    <input type="text" required class="form-control inpfield" placeholder="name"
+                                        name="name">
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="inputProduct4">Description</label>
+                                    <input type="text" id="defaultRegisterFormEmail" class="form-control"
+                                        placeholder="Description" name="description">
+                                </div>
+                                <div class="form-row mb-3">
+
+                                    <div class="form group col-md-6">
+                                        <label for="inputBrand4">Category</label>
+                                        <select name="category" class="form-control ">
+                                            <option value="none" selected>Choose Category</option>
+                                            {{#each all}}
+                                            <option>{{this.name}}</option>
+                                            {{/each}}
+                                        </select>
+                                    </div>
+
+                                    <div class="form-group col-md-6">
+                                        <label for="inputBrand4">Brand Name</label>
+                                        <input type="text" required class="form-control inpfield" name="brand_name"
+                                            placeholder="Brand Name">
+                                    </div>
+
+                                </div>
+
+                                <div class="form-row">
+
+                                    <div class="form-group col-md-6">
+                                        <label for="inputStock4">Stock</label>
+                                        <input type="number" class="form-control inpfield" name="stock"
+                                            placeholder="Stock">
+                                    </div>
+                                    <div class="form-group col-md-6">
+                                        <label for="inputPricek4">Price</label>
+                                        <input type="Price" required class="form-control inpfield" name="price"
+                                            placeholder="Price">
+                                    </div>
+                                </div>
+                                <div class="form-check-box d-flex justify-content-around">
+                                    <div class="check-1">
+                                        <input type="checkbox" id="vehicle1" name="new" value="new">
+                                        <label for="vehicle1"> New</label>
+                                    </div>
+                                    <div class="check-2">
+                                        <input type="checkbox" id="vehicle2" name="outofstock" value="outofstock">
+                                        <label for="vehicle2"> Out of Stock</label>
+                                    </div>
+                                    <div class="check-3">
+                                        <input type="checkbox" id="vehicle3" name="sale" value="sale">
+                                        <label for="vehicle3"> Sale</label>
+
+                                    </div>
+
+
+                                </div>
+                                <div class="form-row form_img">
+                                    <div class="grid">
+                                        <div class="form-element">
+                                            <input type="file" id="file-1" accept="image/*" name="images">
+                                            <label for="file-1" id="file-1-preview">
+                                                <img src="https://bit.ly/3ubuq5o" alt="">
+                                                <div>
+                                                    <span>+</span>
+                                                </div>
+                                            </label>
+                                        </div>
+                                        <div class="form-element">
+                                            <input type="file" id="file-2" accept="image/*" name="images">
+                                            <label for="file-2" id="file-2-preview">
+                                                <img src="https://bit.ly/3ubuq5o" alt="">
+                                                <div>
+                                                    <span>+</span>
+                                                </div>
+                                            </label>
+                                        </div>
+                                        <div class="form-element">
+                                            <input type="file" id="file-3" accept="image/*" name="images">
+                                            <label for="file-3" id="file-3-preview">
+                                                <img src="https://bit.ly/3ubuq5o" alt="">
+                                                <div>
+                                                    <span>+</span>
+                                                </div>
+                                            </label>
+                                        </div>
+                                        <div class="form-element">
+                                            <input type="file" id="file-4" accept="image/*" name="images">
+                                            <label for="file-4" id="file-4-preview">
+                                                <img src="https://bit.ly/3ubuq5o" alt="">
+                                                <div>
+                                                    <span>+</span>
+                                                </div>
+                                            </label>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <input type="submit">
+                                {{!-- <div class="text-center mt-5">
+                                    <button type="button" class="btn btn-primary">Add Product</button>
+
+                                </div> --}}
+
+                            </form>
+
+                        </div>
+                        <!-- end dashboard inner -->
+                    </div>
+                </div>
+            </div>
+
+        </div> <!-- /.card -->
+    </div> <!-- /.col-lg-8 -->
+</div>
+</div>
+<!-- /.Category -->
+<script>
+    function previewBeforeUpload(id) {
+        document.querySelector("#" + id).addEventListener("change", function (e) {
+            if (e.target.files.length == 0) {
+                return;
+            }
+            let file = e.target.files[0];
+            let url = URL.createObjectURL(file);
+            document.querySelector("#" + id + "-preview div").innerText = file.name;
+            document.querySelector("#" + id + "-preview img").src = url;
+        });
+    }
+
+    previewBeforeUpload("file-1");
+    previewBeforeUpload("file-2");
+    previewBeforeUpload("file-3");
+    previewBeforeUpload("file-4");
+</script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+<script src="sweetalert2/dist/sweetalert2.all.min.js"></script>
+<!-- Include a polyfill for ES6 Promises (optional) for IE11 -->
+<script src="https://cdn.jsdelivr.net/npm/promise-polyfill@8/dist/polyfill.js"></script>
+
+{{#if proExists}}
+
+<script>
+    flash()
+    function flash() {
+        Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: 'This product already exists..',
+        })
+    }
+
+</script>
+
+{{/if}}
+
+
+
+
+
+{{!-- <div class="card-body--">
+    <div class="table-stats order-table ov-h">
+        <table id="bootstrap-data-table" class="table table-striped table-bordered">
+            <thead>
+                <tr>
+                    <th>index</th>
+                    <th>Name</th>
+                    <th>Edit</th>
+                    <th>Delete</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each data}}
+                <tr>
+                    <td class="create_index">{{ inc @index}} </td>
+
+                    <td><input id="btnp" class="border-0" type="text" value="{{this.category}}" disabled></td>
+                    <td> <button type="button" class="btn btn-primary" data-toggle="modal"
+                            data-target="#exampleModal{{this._id}}">
+                            Edit button
+                        </button>
+                    </td>
+
+
+
+                    <td><a href="/admin/delete-category/{{this._id}}"><button type="button"
+                                class="btn btn-danger">Delete</button></a></td>
+                    <td>
+                        <span class="products">View Products</span>
+                    </td>
+                    </td>
+                </tr>
+                <!-- Modal -->
+                <div class="modal fade" id="exampleModal{{this._id}}" tabindex="-1" role="dialog"
+                    aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <form action="/admin/update-category/{{this._id}}" method="post">
+                                    <input type="text" value="{{this.category_name}}" name="edit">
+                                    <input type="submit" class="btn btn-primary">
+                                </form>
+
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {{/each}}
+
+            </tbody>
+        </table>
+    </div> <!-- /.table-stats -->
+</div> --}}

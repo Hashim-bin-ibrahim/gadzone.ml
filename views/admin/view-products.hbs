@@ -1,0 +1,68 @@
+{{!-- SHOW ALL CATEGORY LIST STARTS--}}
+<div class="dash-container  mt-5 p-4">
+  <h4 class="text-center mb-5">Active Products</h4>
+  <section>
+
+    <div class="containers shadow p-2">
+
+      <table class="table" id="vendors_table">
+
+
+
+
+        <thead>
+          <tr>
+            <th>Sl No</th>
+            <th>Pro-Name</th>
+            <th>Category</th>
+            <th>Seller</th>
+            <th>Brand</th>
+            <th>Stock</th>
+            <th>Price</th>
+            <th>Image</th>
+            
+          </tr>
+        </thead>
+
+        <tbody>
+          {{#each data}}
+          <tr>
+
+            <td>{{inc @index}}</td>
+            <td> {{this.name}}</td>
+            <td> {{this.result.[0].name}}</td>
+            <td> {{this.res.[0].name}}</td>
+            <td> {{this.brand_name}}</td>
+            <td> {{this.stock}}</td>
+            <td> {{this.price}}</td>
+            <td><img src="/productimages/{{this.productPictures.[0].filename}}" style="width: 50px ;height=50px"  alt=""></td>
+
+
+            
+          </tr>
+
+
+          {{/each}}
+
+        </tbody>
+      </table>
+    </div>
+  </section>
+</div>
+
+
+
+
+
+<script>
+  $(document).ready(function () {
+
+
+    $('#user_table').wrap('<div id="hide" style="display:none"/>');
+
+    $('#hide').css('display', 'block');
+  });
+
+
+  var table = $('#vendors_table').DataTable();
+</script>

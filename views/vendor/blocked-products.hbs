@@ -1,0 +1,74 @@
+{{!-- SHOW ALL CATEGORY LIST STARTS--}}
+<div class="dash-container  mt-5 p-4">
+  <h4 class="text-center mb-5">Active Categories</h4>
+  <section>
+
+    <div class="container shadow p-2">
+
+      <table class="table" id="vendors_table">
+
+
+
+
+        <thead>
+          <tr>
+            <th>Sl No</th>
+            <th>Pro-Name</th>
+            <th>Category</th>
+            <th>Brand</th>
+            <th>Stock</th>
+            <th>Price</th>
+            <th>Image</th>
+            <th>Block</th>
+          </tr>
+        </thead>
+
+
+
+
+
+
+        <tbody>
+          {{#each avlPro}}
+          <tr>
+
+            <td>{{inc @index}}</td>
+            <td> {{this.name}}</td>
+            <td> {{this.result.[0].name}}</td>
+            <td> {{this.brand_name}}</td>
+            <td> {{this.stock}}</td>
+            <td> {{this.price}}</td>
+            <td><img src="/productimages/{{this.productPictures.[0].filename}}" style="width: 50px ;height=50px"  alt=""></td>
+
+
+            <td>
+              <a href="/vendor/unblock-pro/{{this._id}}" class="btn btn-danger"
+                onclick="return confirm('are you sur to block  {{this.name}}')">Un-Block</a>
+            </td>
+          </tr>
+
+
+          {{/each}}
+
+        </tbody>
+      </table>
+    </div>
+  </section>
+</div>
+
+
+
+
+
+<script>
+  $(document).ready(function () {
+
+
+    $('#user_table').wrap('<div id="hide" style="display:none"/>');
+
+    $('#hide').css('display', 'block');
+  });
+
+
+  var table = $('#vendors_table').DataTable();
+</script>

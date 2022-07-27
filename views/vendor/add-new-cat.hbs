@@ -1,0 +1,40 @@
+<div class="add-category-container bg-light p-3 mt-5 mb-5">
+            <div class="row">
+              <div class="col-md-12  ">
+                <form action="/vendor/send-new-cat" method="post">
+             <div class="content-wrappers text-center mt-2">
+            <label for="" class="mt-2 ADDCATEGORIES_LABLE">ADD CATEGORIES</label><br>
+            
+            <input required type="text" placeholder="Enter a category" class="mt-2 text-2 text-uppercase" name="name" >  
+            
+
+            <button type="submit" class="btn btn-primary ">Send</button>
+          </div>
+
+
+          </form>
+              </div>
+              
+            </div>
+          </div>
+          <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+    <script src="sweetalert2/dist/sweetalert2.all.min.js"></script>
+    <!-- Include a polyfill for ES6 Promises (optional) for IE11 -->
+    <script src="https://cdn.jsdelivr.net/npm/promise-polyfill@8/dist/polyfill.js"></script>
+        
+
+{{#if categoryexists}}
+
+<script>
+  flash()
+  function flash(){
+ Swal.fire({
+  icon: 'error',
+  title: 'Oops...',
+  text: 'Category already exists or blocked by admin',
+})
+  }
+ 
+</script>
+  
+{{/if}}
